@@ -1,0 +1,135 @@
+---
+title: "Introduction to hydropeak"
+author: "Julia Haider"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to hydropeak}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library("hydropeak")
+```
+
+## Introduction
+
+Hydropeaking causes an important environmental impact on running water ecosystems. Many affected rivers have a poor
+ecological status. In rivers affected by hydropeaking, the flow conditions are highly complex and difficult to grasp. The implemented event-based algorithm detects flow fluctuations corresponding to increase events (IC) and decrease events (DC). For each event, a set of parameters related to the fluctuation intensity is calculated: maximum flow fluctuation rate (MAFR), mean flow fluctuation rate (MEFR), amplitude (AMP), flow ratio (FR), and duration (DUR). 
+
+Greimel et al. (2016) \doi{10.1002/hyp.10773} introduced a framework for detecting and characterising sub-daily flow fluctuations. By analysing more than 500 Austrian hydrographs, covering the whole range from unimpacted to heavily impacted rivers, different fluctuation types could be identified according to the potential source: e.g., sub-daily flow fluctuations caused by hydropeaking, rainfall or snow and glacier melt. The hydropeak package enables detecting flow fluctuation events in a given time series by computing differences between consecutive time steps and calculating flow fluctuation parameters. 
+
+
+## Data
+
+To detect flow fluctuation events, hydropeak needs an input data frame that contains at least a column with an ID of the gauging station, a column with date-time values, and a column with flow rates (Q). To use the functions of hydropeak properly, the input data frame has to be converted to a S3 class called `flow`. This happens by default in the main function `get_metrics()`, where the column indices of these three variables can be passed. By default this is `cols = c(1, 2, 3)` for `ID, Time, Q`. Converting the data frame to a `flow` object, makes sure that a standardised date-time format and valid data types will be used.
+
+`Q` is an example input dataset with 3 variables and 960 stage measurements (Q in $m^{3}/s$) from two different gauging stations. One time step is 15 minutes which corresponds to high-resolution data. The dataset is documented in `?Q`. We will use these data to demonstrate the detection of increase (IC) and decrease (DC) events and the computation of the metrics from Greimel et al. (2016).
+
+```{r}
+dim(Q)
+head(Q)
+```
+
+To verify the results, we use the `Events` dataset which also shows the output format of the main function `get_metrics()`. `Events` is the output of an ORACLE® database from the Institute of Hydrobiology and Aquatic Ecosystem Management, BOKU University, Vienna, Austria. It contains 165 IC and DC events and 8 variables and is documented in `?Events`.
+
+
+```{r}
+dim(Events)
+head(Events)
+```
+
+## Compute events and metrics with `get_events()`
+
+`get_events()` is the main function and processes an input dataset such as `Q` as follows:
+
+* `flow()` converts `Q` to a `flow` object which is formatted to be compatible with the functions in hydropeak.
+* `change_points()` computes change points of the flow fluctuation where the flow is increasing (IC) or decreasing (DC). Optionally, constant events or NA events can be included. 
+* `all_metrics()` for each event determined by `change_points()`: all metrics according to Greimel et al. (2016) are calculated.
+* a data frame with all events and metrics is returned.
+
+```{r}
+result <- get_events(Q, omit.constant = FALSE, omit.na = FALSE)
+head(result)
+
+all.equal(Events, result)
+```
+
+## Compute events and metrics from input files and directories with `get_events_file()` and `get_events_dir()`
+
+With `get_events_file()` a file path can be provided as an argument. The function reads a file from the path and calls `get_events()`. It returns the computed events by default. This can be disabled if the argument `return` is set to `FALSE`. All events can then be optionally written to a single file, together. Or if the argument `split` is set to `TRUE`, a separate file for each gauging station ID and event type is created. An output directory has to be provided, otherwise it writes to `tempdir()`. The naming scheme of the output file is `ID_event_type_date-from_date_to.csv`.
+
+```{r}
+Q_file <- system.file("extdata", "Q.csv", package = "hydropeak")
+outdir <- file.path(tempdir(), "Events1")
+
+events <- get_events_file(Q_file, inputsep = ",", inputdec = ".", 
+                          save = TRUE, split = TRUE, return = TRUE,
+                          outdir = outdir)
+head(events)
+```
+`get_events_dir()` allows to read input files from directories and calls `get_events_file()` for each file in the provided directory. The resulting events are split into separate files for each gauging station ID and event type and are written to the given output directory. If no output directory is provided, it writes to `tempdir()`. The function does not return anything. The naming scheme of the output files is `ID_event_type_date-from_date_to.csv`.
+
+```{r}
+Q_dir <- system.file("extdata", package = "hydropeak")
+outdir <- file.path(tempdir(), "Events2")
+
+get_events_dir(Q_dir, inputsep = ",", inputdec = ".", outdir = outdir)
+list.files(outdir)
+```
+
+## Using individual metrics
+
+The implemented metrics can be used individually. All of these functions take a single event as their first argument, either increasing or decreasing. To use individual metrics, the event data frame has to be converted first using `flow()`.
+
+```{r}
+Q_event <- Q[3:4, ]
+Q_event # decreasing event by 0.001 m^3/s within 15 minutes
+``` 
+
+Using `get_events()` for this DC event results in:
+
+```{r}
+get_events(Q_event)
+```
+When using the functions separately, first the data set has to be converted with `flow()`:
+
+```{r}
+Q_event <- flow(Q_event)
+Q_event
+```
+
+The amplitude (AMP, unit: $m^3/s$) of an event is defined as the difference between the flow maximum and the flow minimum:
+
+```{r}
+amp(Q_event)
+```
+The maximum flow fluctuation rate (MAFR, unit: $m^3/s$) represents the highest absolute flow change of two consecutive time steps within an event.
+
+```{r}
+mafr(Q_event)
+```
+The mean flow fluctuation rate (MEFR, unit: $m^3/s^2$) is calculated by the event amplitude divided by the number of time steps (duration) within an event.
+
+```{r}
+mefr(Q_event)
+```
+The duration of an event is specified as the number of consecutive time steps with equal flow trend.
+
+```{r}
+dur(Q_event)
+```
+The metric flow ratio (FR) is defined as the flow maximum divided by the flow minimum.
+
+```{r}
+fr(Q_event, event_type = event_type(Q_event))
+```
+
+
+
+

@@ -1,0 +1,22 @@
+citHeader("To cite hydropeak in publications use:") 
+
+citEntry(entry = "Article",
+         title = "{A Method to Detect and Characterize Sub-Daily Flow Fluctuations}",
+         author =  personList(person(given = "Franz", family = "Greimel"),
+			person(given = "Bernhard", family = "Zeiringer"),
+			person(given = "Norbert", family = "H\\\"oller"),
+			person(given = "Bettina", family = "Gr\\\"un"),
+			person(given = "Reinhold", family = "Godina"),
+			person(given = "Stefan", family = "Schmutz")),
+         journal = "Hydrological Processes",
+         year = "2016",
+         volume = "30",
+         number = "13",
+	 pages = "2063--2078",
+         doi = "10.1002/hyp.10773",
+         url = "https://onlinelibrary.wiley.com/doi/10.1002/hyp.10773",
+         
+         textVersion = paste("Franz Greimel et al. A method to detect and characterize sub-daily flow fluctuations.",
+                             "Hydrological Processes, 30(13), 2063-2078, 2016.",
+			     "doi:10.1002/hyp.10773")
+         )
