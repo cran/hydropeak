@@ -17,32 +17,49 @@ get_events_file(
 )
 }
 \arguments{
-\item{Q_file}{A character string containing the name of the file which the data are to be read from with \code{\link[utils:read.csv]{utils::read.csv()}}.}
+\item{Q_file}{A character string containing the name of the file which the data
+are to be read from with \code{\link[utils:read.csv]{utils::read.csv()}}.}
 
 \item{inputsep}{Field separator character string for input data.}
 
 \item{inputdec}{Character string for decimal points in input data.}
 
-\item{save}{A logical. If \code{FALSE} (default) events (results from \code{\link[=get_events]{get_events()}}) are not written to file(s), otherwise events are written to \code{outdir}.}
+\item{save}{A logical. If \code{FALSE} (default) events (results from
+\code{\link[=get_events]{get_events()}}) are not written to file(s),
+otherwise events are written to \code{outdir}.}
 
-\item{split}{A logical. If \code{TRUE} (default) output files are separated by their gauging station ID (\code{ID}) and by \code{Event_Type}, otherwise all events are written to a single file.}
+\item{split}{A logical. If \code{TRUE} (default) output files are separated by
+their gauging station ID (\code{ID}) and by \code{Event_Type}, otherwise
+all events are written to a single file.}
 
-\item{outdir}{A character string naming a directory where the output file(s) should be written to.}
+\item{outdir}{A character string naming a directory where the output file(s)
+should be written to.}
 
-\item{mc.cores}{Number of cores to use with \code{\link[parallel:mclapply]{parallel::mclapply()}}. On Windows, this will be set to 1.}
+\item{mc.cores}{Number of cores to use with
+\code{\link[parallel:mclapply]{parallel::mclapply()}}. On Windows, this
+will be set to 1.}
 
-\item{return}{A logical. If \code{TRUE} (default) it returns the resulting data frame or list of data frames. Otherwise it returns \code{NULL}.}
+\item{return}{A logical. If \code{TRUE} (default) it returns the resulting
+data frame or list of data frames. Otherwise it returns \code{NULL}.}
 
-\item{...}{Arguments to be passed to \code{\link[=get_events]{get_events()}} and further to \code{\link[=flow]{flow()}}.}
+\item{...}{Arguments to be passed to \code{\link[=get_events]{get_events()}}
+and further to \code{\link[=flow]{flow()}}.}
 }
 \value{
-A data frame which contains for every increase or decrease event in a given time series all metrics (\code{\link[=all_metrics]{all_metrics()}}), gauging station ID, event type, and starting time of an event.
-Included metrics are \code{\link[=amp]{amp()}}, \code{\link[=mafr]{mafr()}}, \code{\link[=mefr]{mefr()}}, \code{\link[=dur]{dur()}}, \code{\link[=fr]{fr()}}. The returned data frame is not split. Returns \code{NULL}, if argument \code{return} is set to \code{FALSE}.
+A data frame which contains for every increase or decrease event in a
+    given time series all metrics (\code{\link[=all_metrics]{all_metrics()}}),
+    gauging station ID, event type, and starting time of an event.
+    Included metrics are \code{\link[=amp]{amp()}}, \code{\link[=mafr]{mafr()}},
+    \code{\link[=mefr]{mefr()}}, \code{\link[=dur]{dur()}}, \code{\link[=ratio]{ratio()}}.
+    The returned data frame is not split. Returns \code{NULL}, if argument
+    \code{return} is set to \code{FALSE}.
 }
 \description{
-Given a file path it reads a data frame (time series) of stage measurements and calls \code{\link[=get_events]{get_events()}}.
-The resulting events can be optionally written to a single file or to separate files for each gauging station ID (\code{ID}) and \code{Event_Type}.
-Files which produce errors return \code{NULL}.
+Given a file path it reads a data frame (time series) of stage
+    measurements and calls \code{\link[=get_events]{get_events()}}.
+    The resulting events can be optionally written to a single file or to
+    separate files for each gauging station ID (\code{ID}) and \code{Event_Type}.
+    Files which produce errors return \code{NULL}.
 }
 \examples{
 Q_file <- system.file("extdata", "Q.csv", package = "hydropeak")

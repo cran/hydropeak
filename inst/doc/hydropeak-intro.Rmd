@@ -20,7 +20,7 @@ library("hydropeak")
 ## Introduction
 
 Hydropeaking causes an important environmental impact on running water ecosystems. Many affected rivers have a poor
-ecological status. In rivers affected by hydropeaking, the flow conditions are highly complex and difficult to grasp. The implemented event-based algorithm detects flow fluctuations corresponding to increase events (IC) and decrease events (DC). For each event, a set of parameters related to the fluctuation intensity is calculated: maximum flow fluctuation rate (MAFR), mean flow fluctuation rate (MEFR), amplitude (AMP), flow ratio (FR), and duration (DUR). 
+ecological status. In rivers affected by hydropeaking, the flow conditions are highly complex and difficult to grasp. The implemented event-based algorithm detects flow fluctuations corresponding to increase events (IC) and decrease events (DC). For each event, a set of parameters related to the fluctuation intensity is calculated: maximum flow fluctuation rate (MAFR), mean flow fluctuation rate (MEFR), amplitude (AMP), flow ratio (RATIO), and duration (DUR). 
 
 Greimel et al. (2016) \doi{10.1002/hyp.10773} introduced a framework for detecting and characterising sub-daily flow fluctuations. By analysing more than 500 Austrian hydrographs, covering the whole range from unimpacted to heavily impacted rivers, different fluctuation types could be identified according to the potential source: e.g., sub-daily flow fluctuations caused by hydropeaking, rainfall or snow and glacier melt. The hydropeak package enables detecting flow fluctuation events in a given time series by computing differences between consecutive time steps and calculating flow fluctuation parameters. 
 
@@ -124,10 +124,10 @@ The duration of an event is specified as the number of consecutive time steps wi
 ```{r}
 dur(Q_event)
 ```
-The metric flow ratio (FR) is defined as the flow maximum divided by the flow minimum.
+The metric flow ratio (RATIO) is defined as the flow maximum divided by the flow minimum.
 
 ```{r}
-fr(Q_event, event_type = event_type(Q_event))
+ratio(Q_event, event_type = event_type(Q_event))
 ```
 
 

@@ -7,15 +7,23 @@
 mefr(x)
 }
 \arguments{
-\item{x}{Data frame (time series) from an event with equal flow trend. The data frame must contain a date-time column (\code{Time}) and a flow rate column (\code{Q}) and must be in a compatible format.
+\item{x}{Data frame (time series) from an event with equal flow trend. The
+data frame must contain a date-time column (\code{Time}) and a flow rate
+column (\code{Q}) and must be in a compatible format.
 (see \code{\link[=flow]{flow()}}).}
 }
 \value{
-Returns a numeric value which is the mean flow fluctuation rate computed by the event amplitude \code{\link[=amp]{amp()}} divided by the number of time steps \code{\link[=dur]{dur()}}. If a data frame containing \code{NA} flow rates (\code{Q}) is given, \code{NA} is returned.
+Returns a numeric value which is the mean flow fluctuation rate computed
+    by the event amplitude \code{\link[=amp]{amp()}} divided by the number of
+    time steps \code{\link[=dur]{dur()}}. If a data frame containing \code{NA}
+    flow rates (\code{Q}) is given, \code{NA} is returned.
 }
 \description{
-The mean flow fluctuation rate (MEFR, unit: \eqn{m^3/s^2}) is calculated by the event amplitude divided by the number of time steps (duration) within an event.
-Given an event with equal flow trend, amplitude and duration are computed. From these metrics the mean flow fluctuation rate is calculated and returned.
+The mean flow fluctuation rate (MEFR, unit: \eqn{m^3/s^2}) is
+    calculated by the event amplitude divided by the number of time steps
+    (duration) within an event. Given an event with equal flow trend, amplitude
+    and duration are computed. From these metrics the mean flow fluctuation
+    rate is calculated and returned.
 }
 \examples{
 data(Q)

@@ -59,5 +59,5 @@ mefr(Q_event)
 dur(Q_event)
 
 ## -----------------------------------------------------------------------------
-fr(Q_event, event_type = event_type(Q_event))
+ratio(Q_event, event_type = event_type(Q_event))
 

@@ -17,27 +17,45 @@ flow(
 validate_flow(x)
 }
 \arguments{
-\item{x}{Data frame which contains at least a column with an ID of the gauging station, a column with date-time values in character representation and a column with flow rates}
+\item{x}{Data frame which contains at least a column with an ID of the gauging
+station, a column with date-time values in character representation and a
+column with flow rates}
 
-\item{format}{Character string giving the date-time format of the date-time column in the input data frame  (default: \code{dd.mm.YYYY HH:MM})}
+\item{format}{Character string giving the date-time format of the date-time
+column in the input data frame  (default: \code{dd.mm.YYYY HH:MM})}
 
-\item{tz}{Character string specifying the time zone to be used for the conversion (default: \code{Etc/GMT-1}).}
+\item{tz}{Character string specifying the time zone to be used for the conversion
+(default: \code{Etc/GMT-1}).}
 
-\item{cols}{Integer vector specifying column indices in the input data frame which contain gauging station ID, date-time and flow rate to be renamed. The default indices are 1 (ID), 2 (date-time) and 3 (flow rate, Q).}
+\item{cols}{Integer vector specifying column indices in the input data frame
+which contain gauging station ID, date-time and flow rate to be renamed.
+The default indices are 1 (ID), 2 (date-time) and 3 (flow rate, Q).}
 
-\item{steplength}{Numeric value which specifies the distance between (equispaced) time steps in minutes. (default: \code{15}, which refers to 15 minutes). Non-equispaced time steps are not supported and missing time steps are imputed if argument \code{full} is set to \code{TRUE} (default), Q values are assumed to be \code{NA}.}
+\item{steplength}{Numeric value which specifies the distance between (equispaced)
+time steps in minutes. (default: \code{15}, which refers to 15 minutes).
+Non-equispaced time steps are not supported and missing time steps are
+imputed if argument \code{full} is set to \code{TRUE} (default), Q values
+are assumed to be \code{NA}.}
 
-\item{full}{A logical. If \code{TRUE} (default) imputes missing time step values so the time series is complete. Imputed Q values are set to NA. It should only be set to \code{FALSE}, if it is known, that the time series is complete.}
+\item{full}{A logical. If \code{TRUE} (default) imputes missing time step values
+so the time series is complete. Imputed Q values are set to NA. It should
+only be set to \code{FALSE}, if it is known, that the time series is complete.}
 }
 \value{
-Returns a \code{flow} object which inherits from data frame (time series). It contains at least a gauging station ID column (\code{ID}) converted to character values, a date-time column (\code{Time}) converted to class "POSIXlt" (see \code{\link[base:strptime]{base::strptime()}}) and
-a flow rate column (\code{Q}), which is converted to numeric values.
-The \code{flow()} object ensures that input flow fluctuation time series data can be processed with the functions in the \pkg{hydropeak} package.
-Therefore, it is mandatory to provide the correct indices (see argument \code{cols}) and the correct date-time format (see argument \code{format}) of the input data frame.
+Returns a \code{flow} object which inherits from data frame (time series).
+    It contains at least a gauging station ID column (\code{ID}) converted to
+    character values, a date-time column (\code{Time}) converted to class "POSIXlt"
+    (see \code{\link[base:strptime]{base::strptime()}}) and a flow rate column
+    (\code{Q}), which is converted to numeric values. The \code{flow()} object
+    ensures that input flow fluctuation time series data can be processed with
+    the functions in the \pkg{hydropeak} package. Therefore, it is mandatory
+    to provide the correct indices (see argument \code{cols}) and the correct
+    date-time format (see argument \code{format}) of the input data frame.
 }
 \description{
-The function \code{flow()} creates a flow rate time series object which is formatted to be compatible with the functions
-in the \pkg{hydropeak} package.
+The function \code{flow()} creates a flow rate time series object
+    which is formatted to be compatible with the functions in the \pkg{hydropeak}
+    package.
 }
 \examples{
 data(Q)

@@ -352,7 +352,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Hydropeaking causes an important environmental impact on running water ecosystems. Many affected rivers have a poor ecological status. In rivers affected by hydropeaking, the flow conditions are highly complex and difficult to grasp. The implemented event-based algorithm detects flow fluctuations corresponding to increase events (IC) and decrease events (DC). For each event, a set of parameters related to the fluctuation intensity is calculated: maximum flow fluctuation rate (MAFR), mean flow fluctuation rate (MEFR), amplitude (AMP), flow ratio (FR), and duration (DUR).</p>
+<p>Hydropeaking causes an important environmental impact on running water ecosystems. Many affected rivers have a poor ecological status. In rivers affected by hydropeaking, the flow conditions are highly complex and difficult to grasp. The implemented event-based algorithm detects flow fluctuations corresponding to increase events (IC) and decrease events (DC). For each event, a set of parameters related to the fluctuation intensity is calculated: maximum flow fluctuation rate (MAFR), mean flow fluctuation rate (MEFR), amplitude (AMP), flow ratio (RATIO), and duration (DUR).</p>
 <p>Greimel et al. (2016)  introduced a framework for detecting and characterising sub-daily flow fluctuations. By analysing more than 500 Austrian hydrographs, covering the whole range from unimpacted to heavily impacted rivers, different fluctuation types could be identified according to the potential source: e.g., sub-daily flow fluctuations caused by hydropeaking, rainfall or snow and glacier melt. The hydropeak package enables detecting flow fluctuation events in a given time series by computing differences between consecutive time steps and calculating flow fluctuation parameters.</p>
 </div>
 <div id="data" class="section level2">
@@ -373,7 +373,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="kw">dim</span>(Events)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="co">#&gt; [1] 296   8</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="kw">head</span>(Events)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR       FR</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR    RATIO</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a><span class="co">#&gt; 1 200000          0 2021-01-01 00:00:00 0.000 0.000 0.000   2 1.000000</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co">#&gt; 2 200000          4 2021-01-01 00:30:00 0.001 0.001 0.001   1 1.001330</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a><span class="co">#&gt; 3 200000          1 2021-01-01 00:45:00 0.000 0.000 0.000   3 1.000000</span></span>
@@ -392,7 +392,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>result &lt;-<span class="st"> </span><span class="kw">get_events</span>(Q, <span class="dt">omit.constant =</span> <span class="ot">FALSE</span>, <span class="dt">omit.na =</span> <span class="ot">FALSE</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a><span class="kw">head</span>(result)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR       FR</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR    RATIO</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="co">#&gt; 1 200000          0 2021-01-01 00:00:00 0.000 0.000 0.000   2 1.000000</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="co">#&gt; 2 200000          4 2021-01-01 00:30:00 0.001 0.001 0.001   1 1.001330</span></span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a><span class="co">#&gt; 3 200000          1 2021-01-01 00:45:00 0.000 0.000 0.000   3 1.000000</span></span>
@@ -413,7 +413,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true"></a>                          <span class="dt">save =</span> <span class="ot">TRUE</span>, <span class="dt">split =</span> <span class="ot">TRUE</span>, <span class="dt">return =</span> <span class="ot">TRUE</span>,</span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true"></a>                          <span class="dt">outdir =</span> outdir)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true"></a><span class="kw">head</span>(events)</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR       FR</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR    RATIO</span></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true"></a><span class="co">#&gt; 1 200000          4 2021-01-01 00:30:00 0.001 0.001 0.001   1 1.001330</span></span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true"></a><span class="co">#&gt; 2 200000          4 2021-01-01 03:00:00 0.001 0.001 0.001   1 1.001332</span></span>
 <span id="cb4-11"><a href="#cb4-11" aria-hidden="true"></a><span class="co">#&gt; 3 200000          4 2021-01-01 05:30:00 0.001 0.001 0.001   1 1.001333</span></span>
@@ -444,7 +444,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a><span class="co">#&gt; 4 200000 01.01.2021 00:45 0.752</span></span></code></pre></div>
 <p>Using <code>get_events()</code> for this DC event results in:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="kw">get_events</span>(Q_event)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR      FR</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a><span class="co">#&gt;       ID EVENT_TYPE                Time   AMP  MAFR  MEFR DUR   RATIO</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a><span class="co">#&gt; 1 200000          4 2021-01-01 00:30:00 0.001 0.001 0.001   1 1.00133</span></span></code></pre></div>
 <p>When using the functions separately, first the data set has to be converted with <code>flow()</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a>Q_event &lt;-<span class="st"> </span><span class="kw">flow</span>(Q_event)</span>
@@ -464,8 +464,8 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p>The duration of an event is specified as the number of consecutive time steps with equal flow trend.</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="kw">dur</span>(Q_event)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co">#&gt; [1] 1</span></span></code></pre></div>
-<p>The metric flow ratio (FR) is defined as the flow maximum divided by the flow minimum.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">fr</span>(Q_event, <span class="dt">event_type =</span> <span class="kw">event_type</span>(Q_event))</span>
+<p>The metric flow ratio (RATIO) is defined as the flow maximum divided by the flow minimum.</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="kw">ratio</span>(Q_event, <span class="dt">event_type =</span> <span class="kw">event_type</span>(Q_event))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="co">#&gt; [1] 1.00133</span></span></code></pre></div>
 </div>
 

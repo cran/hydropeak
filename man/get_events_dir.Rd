@@ -14,24 +14,32 @@ get_events_dir(
 )
 }
 \arguments{
-\item{Q_dir}{A character string containing the path name where the input data are located.}
+\item{Q_dir}{A character string containing the path name where the input data
+are located.}
 
 \item{inputsep}{Field separator character string for input data.}
 
 \item{inputdec}{Character string for decimal points in input data.}
 
-\item{outdir}{A character string naming a directory where the output file(s) should be written to.}
+\item{outdir}{A character string naming a directory where the output file(s)
+should be written to.}
 
-\item{mc.cores}{Number of cores to use with \code{\link[parallel:mclapply]{parallel::mclapply()}}. On Windows, this will be set to 1.}
+\item{mc.cores}{Number of cores to use with
+\code{\link[parallel:mclapply]{parallel::mclapply()}}. On Windows, this
+will be set to 1.}
 
-\item{...}{Arguments to be passed to \code{\link[=get_events_file]{get_events_file()}} and further to  \code{\link[=get_events]{get_events()}}  and \code{\link[=flow]{flow()}}.}
+\item{...}{Arguments to be passed to \code{\link[=get_events_file]{get_events_file()}}
+and further to  \code{\link[=get_events]{get_events()}}  and \code{\link[=flow]{flow()}}.}
 }
 \value{
 No return value, called for side effects.
 }
 \description{
-Given a directory path it calls \code{\link[=get_events]{get_events_file()}} for each file in the directory, recursively.
-The resulting events are split into separate files for each gauging station ID (\code{ID}) and \code{Event_Type} and are written to the given output directory.
+Given a directory path it calls
+    \code{\link[=get_events]{get_events_file()}} for each file in the directory,
+    recursively. The resulting events are split into separate files for each
+    gauging station ID (\code{ID}) and \code{Event_Type} and are written to
+    the given output directory.
 }
 \examples{
 Q_dir <- "./inst/extdata"

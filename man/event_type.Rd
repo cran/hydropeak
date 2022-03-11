@@ -7,8 +7,9 @@
 event_type(x)
 }
 \arguments{
-\item{x}{Data frame (time series) from an event with equal flow trend. Data frame must contain a date-time column (\code{Time}) and a flow rate column (\code{Q}) and must be in a compatible format.
-(see \code{\link[=flow]{flow()}}).}
+\item{x}{Data frame (time series) from an event with equal flow trend. Data
+frame must contain a date-time column (\code{Time}) and a flow rate column
+(\code{Q}) and must be in a compatible format. (see \code{\link[=flow]{flow()}}).}
 }
 \value{
 Returns an numeric value which indicates the event type.
@@ -23,8 +24,12 @@ Event types are defined as follows:
 }
 }
 \description{
-Given a data frame (time series) of equal flow (Q) trend, it is determined whether the flow is increasing or decreasing, constant or if missing values occur. It returns a numeric value which indicates the event type.
-As the event type is already determined when the change points are computed, this function is mainly used for demonstration purpose or if metrics should be computed individually.
+Given a data frame (time series) of equal flow (Q) trend, it is
+    determined whether the flow is increasing or decreasing, constant or if
+    missing values occur. It returns a numeric value which indicates the event
+    type. As the event type is already determined when the change points are
+    computed, this function is mainly used for demonstration purpose or if
+    metrics should be computed individually.
 }
 \examples{
 data(Q)

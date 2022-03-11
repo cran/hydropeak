@@ -7,21 +7,32 @@
 all_metrics(x, id, event_type)
 }
 \arguments{
-\item{x}{Data frame (time series) from an event with equal flow trend. The data frame must contain a date-time column (\code{Time}) and a flow rate column (\code{Q}) and must be in a compatible format
+\item{x}{Data frame (time series) from an event with equal flow trend. The
+data frame must contain a date-time column (\code{Time}) and a flow rate
+column (\code{Q}) and must be in a compatible format
 (see \code{\link[=flow]{flow()}}).}
 
-\item{id}{Character string which refers to the identifier of the gauging station (in Austria: HZBCODE).}
+\item{id}{Character string which refers to the identifier of the gauging
+station (in Austria: HZBCODE).}
 
-\item{event_type}{Numeric value which indicates the event type. By using \code{\link[=get_events]{get_events()}}, this is internally computed. If metrics for a single event
-have to be computed individually, the event type has to be provided as an argument or can be computed with \code{\link[=event_type]{event_type()}}.}
+\item{event_type}{Numeric value which indicates the event type. By using
+\code{\link[=get_events]{get_events()}}, this is internally computed.
+If metrics for a single event
+have to be computed individually, the event type has to be provided as an
+argument or can be computed with \code{\link[=event_type]{event_type()}}.}
 }
 \value{
-A data frame including all computed metrics, IDs of gauging stations, event type (see \code{\link[=event_type]{event_type()}} for an overview of possible event types), and starting time of an event \code{x}.
-Included metrics are \code{\link[=amp]{amp()}}, \code{\link[=mafr]{mafr()}}, \code{\link[=mefr]{mefr()}}, \code{\link[=dur]{dur()}}, \code{\link[=fr]{fr()}}.
+A data frame including all computed metrics, IDs of gauging stations,
+    event type (see \code{\link[=event_type]{event_type()}} for an overview of
+    possible event types), and starting time of an event \code{x}.
+    Included metrics are \code{\link[=amp]{amp()}}, \code{\link[=mafr]{mafr()}},
+    \code{\link[=mefr]{mefr()}}, \code{\link[=dur]{dur()}}, \code{\link[=ratio]{ratio()}}.
 }
 \description{
-Given an event with equal flow trend, all metrics implemented in the package \pkg{hydropeak} are computed and combined to a data frame.
-It includes also an identifier of the gauging station provided by the user and the starting time of the event.
+Given an event with equal flow trend, all metrics implemented in
+    the package \pkg{hydropeak} are computed and combined to a data frame.
+    It includes also an identifier of the gauging station provided by the user
+    and the starting time of the event.
 }
 \examples{
 data(Q)

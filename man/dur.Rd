@@ -7,14 +7,17 @@
 dur(x)
 }
 \arguments{
-\item{x}{Data frame (time series) from an event with equal flow trend. The data frame must contain a date-time column (\code{Time}) and a flow rate column (\code{Q}) and must be in a compatible format.
+\item{x}{Data frame (time series) from an event with equal flow trend. The
+data frame must contain a date-time column (\code{Time}) and a flow rate
+column (\code{Q}) and must be in a compatible format.
 (see \code{\link[=flow]{flow()}}).}
 }
 \value{
 Returns an integer value which is the number of consecutive time steps.
 }
 \description{
-The duration of an event is specified as the number of consecutive time steps with equal flow trend.
+The duration of an event is specified as the number of consecutive
+    time steps with equal flow trend.
 }
 \examples{
 data(Q)

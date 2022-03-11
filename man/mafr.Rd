@@ -7,15 +7,21 @@
 mafr(x)
 }
 \arguments{
-\item{x}{Data frame (time series) from an event with equal flow trend. The data frame must contain a date-time column (\code{Time}) and a flow rate column (\code{Q}) and must be in a compatible format
+\item{x}{Data frame (time series) from an event with equal flow trend. The
+data frame must contain a date-time column (\code{Time}) and a flow rate
+column (\code{Q}) and must be in a compatible format
 (see \code{\link[=flow]{flow()}}).}
 }
 \value{
-Returns a numeric value which is the maximum (absolute) flow fluctuation rate. If a data frame containing \code{NA} flow rates (\code{Q}) is given, \code{NA} is returned.
+Returns a numeric value which is the maximum (absolute) flow
+    fluctuation rate. If a data frame containing \code{NA} flow rates (\code{Q})
+    is given, \code{NA} is returned.
 }
 \description{
-The maximum flow fluctuation rate (MAFR, unit: \eqn{m^3/s}) represents the highest absolute flow change of two consecutive time steps within an event.
-Given an event with equal flow trend, the maximum flow fluctuation rate is computed and returned.
+The maximum flow fluctuation rate (MAFR, unit: \eqn{m^3/s})
+    represents the highest absolute flow change of two consecutive time steps
+    within an event. Given an event with equal flow trend, the maximum flow
+    fluctuation rate is computed and returned.
 }
 \examples{
 data(Q)

@@ -7,15 +7,21 @@
 amp(x)
 }
 \arguments{
-\item{x}{Data frame (time series) from an event with equal flow trend. The data frame must contain a date-time column (\code{Time}) and a flow rate column (\code{Q}) and must be in a compatible format
+\item{x}{Data frame (time series) from an event with equal flow trend. The
+data frame must contain a date-time column (\code{Time}) and a flow rate
+column (\code{Q}) and must be in a compatible format
 (see \code{\link[=flow]{flow()}}).}
 }
 \value{
-Returns a positive numeric value which is the difference of \code{max(x$Q)} and \code{min(x$Q)} of an event. If a data frame containing \code{NA} flow rates (\code{Q}) is given, \code{NA} is returned.
+Returns a positive numeric value which is the difference of
+    \code{max(x$Q)} and \code{min(x$Q)} of an event. If a data frame containing
+    \code{NA} flow rates (\code{Q}) is given, \code{NA} is returned.
 }
 \description{
-The amplitude (AMP, unit: \eqn{m^3/s}) of an event is defined as the difference between the flow maximum (\eqn{Q_{max}}{Q_max}) and the flow minimum (\eqn{Q_{min}}{Q_min}).
-Given an event with equal flow trend, the amplitude is computed and returned.
+The amplitude (AMP, unit: \eqn{m^3/s}) of an event is defined as
+    the difference between the flow maximum (\eqn{Q_{max}}{Q_max}) and the
+    flow minimum (\eqn{Q_{min}}{Q_min}).
+    Given an event with equal flow trend, the amplitude is computed and returned.
 }
 \examples{
 data(Q)

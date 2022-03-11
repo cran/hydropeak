@@ -7,10 +7,12 @@
 \format{
 A data frame with 165 rows and 8 variables:
 \describe{
-  \item{ID}{Character string which refers to the identifier of the gauging station (in Austria: HZBCODE)}
+  \item{ID}{Character string which refers to the identifier of the gauging station
+      (in Austria: HZBCODE)}
   \item{EVENT_TYPE}{Event types are defined as follows:
     \itemize{
-     \item 0: Constant event after NA event or constant event as first event in time series
+     \item 0: Constant event after NA event or constant event as first event
+         in time series
      \item 1: Constant event after DC
      \item 2: Increasing event (IC)
      \item 3: Constant event after IC
@@ -21,13 +23,14 @@ A data frame with 165 rows and 8 variables:
   \item{MAFR}{Maximum flow fluctuation rate (\code{\link[=mafr]{mafr()}})}
   \item{MEFR}{Mean flow fluctuation rate (\code{\link[=mefr]{mefr()}})}
   \item{DUR}{Duration (\code{\link[=dur]{dur()}})}
-  \item{FR}{Flow ratio (\code{\link[=fr]{fr()}})}
+  \item{RATIO}{Flow ratio (\code{\link[=ratio]{ratio()}})}
 }
 }
 \usage{
 Events
 }
 \description{
-A complementary dataset to the flow fluctuation dataset \link{Q}. It contains the events and metrics such as computed by \code{\link[=get_events]{get_events()}}.
+A complementary dataset to the flow fluctuation dataset \link{Q}. It contains
+the events and metrics such as computed by \code{\link[=get_events]{get_events()}}.
 }
 \keyword{datasets}

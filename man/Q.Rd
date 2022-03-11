@@ -7,8 +7,10 @@
 \format{
 A data frame with 960 rows and 3 variables:
 \describe{
-  \item{ID}{Character string which refers to the identifier of the gauging station (in Austria: HZBCODE)}
-  \item{Time}{Character string with date-time information of stage measurements which needs to be converted to a compatible format (see \code{\link[=flow]{flow()}})}
+  \item{ID}{Character string which refers to the identifier of the gauging station
+      (in Austria: HZBCODE)}
+  \item{Time}{Character string with date-time information of stage measurements
+      which needs to be converted to a compatible format (see \code{\link[=flow]{flow()}})}
   \item{Q}{Flow, stage measurements in \eqn{m^3/s}}
 }
 }
@@ -16,7 +18,7 @@ A data frame with 960 rows and 3 variables:
 Q
 }
 \description{
-A dataset containing sub-daily flow fluctuations of five consecutive days from two different gauging stations.
-One time step is 15 minutes.
+A dataset containing sub-daily flow fluctuations of five consecutive days from
+two different gauging stations. One time step is 15 minutes.
 }
 \keyword{datasets}
