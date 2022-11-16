@@ -14,8 +14,6 @@ citEntry(entry = "Article",
          number = "13",
 	 pages = "2063--2078",
          doi = "10.1002/hyp.10773",
-         url = "https://onlinelibrary.wiley.com/doi/10.1002/hyp.10773",
-         
          textVersion = paste("Franz Greimel et al. A method to detect and characterize sub-daily flow fluctuations.",
                              "Hydrological Processes, 30(13), 2063-2078, 2016.",
 			     "doi:10.1002/hyp.10773")

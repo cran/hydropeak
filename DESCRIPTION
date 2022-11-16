@@ -1,7 +1,7 @@
 Package: hydropeak
 Type: Package
 Title: Detect and Characterize Sub-Daily Flow Fluctuations
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: c(person("Bettina", "Grün", role = c("cre", "ctb"),
                     email = "Bettina.Gruen@R-project.org",
                     comment = c(ORCID = "0000-0001-7265-4773")),
@@ -34,10 +34,10 @@ Config/testthat/edition: 3
 Imports: utils, parallel
 VignetteBuilder: knitr
 NeedsCompilation: no
-Packaged: 2022-03-11 14:20:57 UTC; gruen
+Packaged: 2022-11-13 20:27:01 UTC; gruen
 Author: Bettina Grün [cre, ctb] (<https://orcid.org/0000-0001-7265-4773>),
   Julia Haider [aut],
   Franz Greimel [ctb] (<https://orcid.org/0000-0002-8000-1227>)
 Maintainer: Bettina Grün <Bettina.Gruen@R-project.org>
 Repository: CRAN
-Date/Publication: 2022-03-11 15:40:10 UTC
+Date/Publication: 2022-11-16 03:50:15 UTC

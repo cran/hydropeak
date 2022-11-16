@@ -22,13 +22,13 @@
 #'     only be set to \code{FALSE}, if it is known, that the time series is complete.
 #' @return  Returns a \code{flow} object which inherits from data frame (time series).
 #'     It contains at least a gauging station ID column (\code{ID}) converted to
-#'     character values, a date-time column (\code{Time}) converted to class "POSIXlt"
-#'     (see \code{\link[base:strptime]{base::strptime()}}) and a flow rate column
-#'     (\code{Q}), which is converted to numeric values. The \code{flow()} object
-#'     ensures that input flow fluctuation time series data can be processed with
-#'     the functions in the \pkg{hydropeak} package. Therefore, it is mandatory
-#'     to provide the correct indices (see argument \code{cols}) and the correct
-#'     date-time format (see argument \code{format}) of the input data frame.
+#'     character values, a date-time column (\code{Time}) converted to class "POSIXct"
+#'     (after conversion using \code{\link[base:strptime]{base::strptime()}})
+#'     and a flow rate column (\code{Q}), which is converted to numeric values.
+#'     The \code{flow()} object ensures that input flow fluctuation time series data
+#'     can be processed with the functions in the \pkg{hydropeak} package. Therefore,
+#'     it is mandatory to provide the correct indices (see argument \code{cols}) and
+#'     the correct date-time format (see argument \code{format}) of the input data frame.
 #' @export
 #'
 #' @examples
@@ -65,7 +65,7 @@ new_flow <-
     stopifnot(is.data.frame(x))
 
     names(x)[cols] <- c("ID", "Time", "Q")
-    x$Time <- strptime(x$Time, format = format, tz = tz)
+    x$Time <- as.POSIXct(strptime(x$Time, format = format, tz = tz))
     x$Q <- suppressWarnings(as.numeric(x$Q))
     x$ID <- as.character(x$ID)
 
@@ -111,6 +111,7 @@ impute_flow <-
            format = "%d.%m.%Y %H:%M",
            tz = "Etc/GMT-1") {
     x_split <- split(x, ~ ID)
+    steplength <- as.difftime(steplength, units = "mins")
 
     for (i in seq_along(x_split)) {
       miss <-
@@ -127,7 +128,7 @@ impute_flow <-
 
         for (j in seq_along(miss)) {
           df[(nrow(x_split[[i]]) + j), "Time"] <-
-            x_split[[i]][miss[j], ]$Time + (steplength * 60)
+            x_split[[i]][miss[j], ]$Time + steplength
         }
 
         # sort by increasing date
